@@ -37,7 +37,7 @@
 			{
 				name: 'Waiting for du',
 				singer: 'MOLO',
-				path: './assetss/music/1.mp3',
+				path: 'https://audio.jukehost.co.uk/T9NTNQJh7kCFVX77ZO8BoITWjli00k4Q',
 				image: './assetss/image/1.jpg'
 			},
 			{
