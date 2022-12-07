@@ -356,7 +356,7 @@
 		loadCurrentSong: function() {
 			heading.textContent = this.currentSong.name
 			cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
-			audio.src = this.currentSong.path
+			audio.src = this.songs[this.currenIndex].path
 			this.changeActiveSong(true)
 
 
