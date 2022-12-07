@@ -235,8 +235,6 @@
 			
 			else totalTime = `${currentMin}:${currentSec} / ${totalMinute}:${totalSecond}`
 			totalAudio.textContent = totalTime
-			console.log(progress.value)
-
 			}
 			
 			// Định dạng HH:MM:SS
