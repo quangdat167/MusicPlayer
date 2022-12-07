@@ -28,7 +28,7 @@
 	const repeatBtn = $('.btn-repeat')
 
 	const app = {
-		currenIndex: 14,
+		currenIndex: 0,
 		isPlaying: false,
 		isRandom: false,
 		isRepeat: false,
@@ -37,151 +37,151 @@
 			{
 				name: 'Waiting for du',
 				singer: 'MOLO',
-				path: './assetss/music/1.mp3',
+				path: 'https://audio.jukehost.co.uk/T9NTNQJh7kCFVX77ZO8BoITWjli00k4Q',
 				image: './assetss/image/1.jpg'
 			},
 			{
 				name: 'In the name of love',
 				singer: 'MARTIN GARIX X BEBE REXHA',
-				path: './assetss/music/2.mp3',
+				path: 'https://audio.jukehost.co.uk/Ww2CXsanXtQsUZfNvE8pxbuHIvQwwgjq',
 				image: './assetss/image/2.jpg'
 			},
 			{
 				name: 'Santa tell me',
 				singer: 'TATUM',
-				path: './assetss/music/3.mp3',
+				path: 'https://audio.jukehost.co.uk/JkiUDSPcEw6onVRI6rozH9mKkBB0HKJU',
 				image: './assetss/image/3.jpg'
 			},
 			{
 				name: 'Độ Tộc 2',
 				singer: 'ĐỘ MIXI x Phúc Du x Pháo x Masew',
-				path: './assetss/music/4.mp3',
+				path: 'https://audio.jukehost.co.uk/gWgIRaivqAUqsztPAhFu9xFZIpLWN0zX',
 				image: './assetss/image/4.jpg'
 			},
 			{
 				name: 'Stram đến bao giờ',
 				singer: 'ĐỘ MIXI',
-				path: './assetss/music/5.mp3',
+				path: 'https://audio.jukehost.co.uk/FOZUkSfMH1LyfTdcE1kmiHPM2hAtfwdJ',
 				image: './assetss/image/5.jpg'
 			},
 			{
 				name: 'Đạo lý tình yêu',
 				singer: 'Độ Lý',
-				path: './assetss/music/6.mp3',
+				path: 'https://audio.jukehost.co.uk/81zcK2ZhYSykveiAxDpsZdaw1qBTvRFl',
 				image: './assetss/image/6.jpg'
 			},
 			{
 				name: 'Cách tán CRUSH',
 				singer: 'MIXI tán gái',
-				path: './assetss/music/7.mp3',
+				path: 'https://audio.jukehost.co.uk/ern540dlzO4IjpL0WPYuZ70f8sv2BLNA',
 				image: './assetss/image/7.jpg'
 			},
 			{
 				name: 'Bên trên tầng lầu',
 				singer: 'Giấu tên',
-				path: './assetss/music/8.mp3',
+				path: 'https://audio.jukehost.co.uk/voPD8l4y2MtgXMEaTQLjuNGKfd6fScST',
 				image: './assetss/image/8.jpg'
 			},
 			{
 				name: 'Phải có người yêu',
 				singer: 'Độ người yêu',
-				path: './assetss/music/9.mp3',
+				path: 'https://audio.jukehost.co.uk/w0T6Qm0Wa5Exbckw0NBYPzLRVdoC0XaW',
 				image: './assetss/image/9.jpg'
 			},
 			{
 				name: 'REMIX',
 				singer: 'DATTO SAN',
-				path: './assetss/music/10.mp3',
+				path: 'https://audio.jukehost.co.uk/UJQC1L2VtxB1VJUXrirPV2nd0esR3TTq',
 				image: './assetss/image/10.jpg'
 			},
 			{
 				name: 'Viet Deep #20',
 				singer: 'MEDIA_MusicPro',
-				path: './assetss/music/11.mp3',
+				path: 'https://audio.jukehost.co.uk/pZKDz3ojTleZ5P0oVbolQ6qZ9cTApVcZ',
 				image: './assetss/image/11.png'
 			},
 			{
 				name: 'THE ONE THAT GOT AWAY REMIX ',
 				singer: '( TRUNG HOÀNG MIX ) HOT TIK TOK 2022',
-				path: './assetss/music/12.mp3',
+				path: 'https://audio.jukehost.co.uk/aqyXf57JMOuOiL1UYxdSVIyaVKwEiJhV',
 				image: './assetss/image/12.jpg'
 			},
 			{
 				name: 'HOUSE LAK - DON\'T STOP - MIXSET',
 				singer: 'TeA DEEP',
-				path: './assetss/music/13.mp3',
+				path: 'https://audio.jukehost.co.uk/GpiaGGM4glp7dI5ik7o6TyREMAeqAgtw',
 				image: './assetss/image/13.png'
 			},
 			{
 				name: 'HOUSE LAK 2022 - LAK WITH SOI DOLCE IN DA HEY Vol.2',
 				singer: 'TeA DEEP',
-				path: './assetss/music/14.mp3',
+				path: 'https://audio.jukehost.co.uk/9Gx7683oWxXsYKCB35CIbWvnti7EOcun',
 				image: './assetss/image/14.png'
 			},
 			{
 				name: 'Deep House 2021 - Việt Mix Chuyện Tình Willzi | Deep Chill',
 				singer: 'TeA DEEP',
-				path: './assetss/music/15.mp3',
+				path: 'https://audio.jukehost.co.uk/1eGwSkq9cg8B2CuMunrjDwM4PSY394Xp',
 				image: './assetss/image/15.png'
 			},
 			{
 				name: 'Mắt Em Nhòa Đi Mascara ( DJ Long Nhật ) - Đạt Con Mix',
 				singer: 'PHÚ THỌ BAY',
-				path: './assetss/music/16.mp3',
+				path: 'https://audio.jukehost.co.uk/GU34oKgF1ldD7L9xvRxC2Dh6v7m80ObZ',
 				image: './assetss/image/16.png'
 			},
 			{
 				name: 'HOUSE LAK - THANH NIÊN | ANNIVERSARY - NBC',
 				singer: 'TeA DEEP',
-				path: './assetss/music/17.mp3',
+				path: 'https://audio.jukehost.co.uk/1IxR784CThbI21lbLigVCYg945TpMrOB',
 				image: './assetss/image/17.png'
 			},
 			{
 				name: 'MIXTAPE - VIET DEEP CHỈ CÒN MỘT ĐÊM CUỐI',
 				singer: 'Trinh Minh Phuc',
-				path: './assetss/music/18.mp3',
+				path: 'https://audio.jukehost.co.uk/YsZ6qDhKWVUYXByklPOjFdhceQFzzhfN',
 				image: './assetss/image/18.png'
 			},
 			{
 				name: 'MIXTAPE - VIET DEEP XA ANH CHẬM CHẬM THÔI',
 				singer: 'Trinh Minh Phuc',
-				path: './assetss/music/19.mp3',
+				path: 'https://audio.jukehost.co.uk/wzw3GdzFGe9QQRs0cNi7ZrU4Tx7xI0jZ',
 				image: './assetss/image/19.png'
 			},
 			{
 				name: 'VIET DEEP 2022 - RẰNG EM MÃI Ở BÊN X NHƯ ANH ĐÃ THẤY EM',
 				singer: 'Deluxe Music',
-				path: './assetss/music/20.mp3',
+				path: 'https://audio.jukehost.co.uk/8Bpq95lmEuiJUBBNMTpmlIHmmzq3INSe',
 				image: './assetss/image/20.png'
 			},
 			{
 				name: 'VIET DEEP 2022 - THỜI GIAN SẼ TRẢ LỜI X CHIẾC KHĂN GIÓ ẤM',
 				singer: 'Deluxe Music',
-				path: './assetss/music/21.mp3',
+				path: 'https://audio.jukehost.co.uk/Rs1wxf0XeVYACUirLHp4QJmzvpTIR2GU',
 				image: './assetss/image/21.png'
 			},
 			{
 				name: 'HOUSE LAK 2022 - Thăng Trầm | Slow Down',
 				singer: 'TeA DEEP',
-				path: './assetss/music/22.mp3',
+				path: 'https://audio.jukehost.co.uk/AgdgaCvSRoNAFOA5t81sQYEGZwMs2xPB',
 				image: './assetss/image/22.png'
 			},
 			{
 				name: 'MIXTAPE - HOUSE LAK | SO FAR AWAY - 1500 STROKES',
 				singer: 'Trinh Minh Phuc',
-				path: './assetss/music/23.mp3',
+				path: 'https://audio.jukehost.co.uk/FBKoedI9QpLrVeVzMUeBG7XMYsSbdsRw',
 				image: './assetss/image/23.png'
 			},
 			{
 				name: 'VIET DEEP 2022 - RẰNG EM MÃI Ở BÊN REMIX',
 				singer: 'Deluxe Music',
-				path: './assetss/music/24.mp3',
+				path: 'https://audio.jukehost.co.uk/1HhhLRJvUFADFKcbsMIIby2HpLOsQm0d',
 				image: './assetss/image/24.png'
 			},
 			{
 				name: 'House Lak Nhà Làm - Thương em đến già By HoangMP Mix (ND Team)',
 				singer: 'MEDIA_MusicPro',
-				path: './assetss/music/25.mp3',
+				path: 'https://audio.jukehost.co.uk/vDzz9Y1mpRLBolq2twF3daWDfl782w90',
 				image: './assetss/image/25.png'
 			},
 			
@@ -391,6 +391,7 @@
 		},
 
 		playRandomSong: function() {
+			this.changeActiveSong(false)
 			let newCurrentIndex 
 			do {
 				newCurrentIndex = Math.floor(Math.random() * this.songs.length)
