@@ -246,8 +246,6 @@
 					totalAudio.textContent = totalTime
 					else totalAudio.textContent = 'Loading...'
 					}
-				// Ẩn time-hover
-				timeHover.style.display = 'none'
 
 					// Định dạng HH:MM:SS
 					// if(audio.duration > 3600) {
@@ -260,6 +258,11 @@
 					// console.log(totalTime)
 					// totalAudio.textContent = `${currentTime} / ${totalTime}`	
 				}, 1000)
+
+				// Ẩn time-hover (Do Điện thoại dùng onmouseup không nhạy nên phải dùng cách này)
+				setInterval(function() {
+					timeHover.style.display = 'none'
+				}, 2000)
 				
 			},
 		
