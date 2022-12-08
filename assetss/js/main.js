@@ -316,27 +316,14 @@
 				progress.value = value;
 			}
 				
-				
-			
 
 			// Tua bai hat
 			progress.oninput = function() {
-				audio.pause()
 				let seekTime = progress.value / 100 * audio.duration
 				audio.currentTime = seekTime
-			}
 
-			// Khi thả chuột sẽ ẩn time-hover
-			progress.onmouseup = function(){
-				audio.play()
-				timeHover.style.display = 'none'
-			}
-
-			// Khi trỏ chuột hiển thị thời gian sẽ tua đến
-			let currentValue = progress.value
-			progress.onmousemove = function() {
-				if(progress.value !== currentValue) {
-					let timeAudioHover = (Math.floor(progress.value / 100 * audio.duration))
+				// Khi trỏ chuột hiển thị thời gian sẽ tua đến
+				let timeAudioHover = (Math.floor(seekTime))
 					
 					const currentHour = Math.floor(timeAudioHover / 3600)
 					let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
@@ -351,13 +338,35 @@
 
 					timeHover.textContent = totalTime
 					timeHover.style.display = 'block'
-				}
-				currentValue = progress.value
 			}
 
-			progress.onmouseleave = function() {
-				timeHover.style.display = 'none'
-			}
+			// Khi thả chuột sẽ ẩn time-hover
+			// progress.onmouseup = function(){
+			// 	timeHover.style.display = 'none'
+			// }
+
+			// let currentValue = progress.value
+			// progress.onmousemove = function() {
+			// 	if(progress.value !== currentValue) {
+			// 		let timeAudioHover = (Math.floor(progress.value / 100 * audio.duration))
+					
+			// 		const currentHour = Math.floor(timeAudioHover / 3600)
+			// 		let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
+			// 		let currentSec = Math.floor(timeAudioHover - currentHour*3600 - currentMin * 60)
+
+			// 		currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
+			// 		currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
+
+			// 		if (currentHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec}`
+					
+			// 		else totalTime = `${currentMin}:${currentSec}`
+
+			// 		timeHover.textContent = totalTime
+			// 		timeHover.style.display = 'block'
+			// 	}
+			// 	currentValue = progress.value
+			// }
+
 
 			// NEXT song
 			nextBtn.onclick = () => {
