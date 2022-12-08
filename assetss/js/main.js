@@ -341,9 +341,9 @@
 			}
 
 			// Khi thả chuột sẽ ẩn time-hover
-			// progress.onmouseup = function(){
-			// 	timeHover.style.display = 'none'
-			// }
+			progress.onmouseup = function(){
+				timeHover.style.display = 'none'
+			}
 
 			// let currentValue = progress.value
 			// progress.onmousemove = function() {
