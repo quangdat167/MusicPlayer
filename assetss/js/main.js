@@ -11,12 +11,14 @@
  * 10. Play song when click
  */
 
+
 	const $ = document.querySelector.bind(document)
 	const $$ = document.querySelectorAll.bind(document)
 
 	const allSong = $$('.song')
 	
 	const totalAudio = $('.time-audio')
+	const timeHover = $('.time-hover')
 	const cd = $('.cd')
 	const heading = $('header h2')
 	const cdThumb = $('.cd .cd-thumb')
@@ -28,6 +30,7 @@
 	const prevBtn = $('.btn-prev')
 	const randomBtn = $('.btn-random')
 	const repeatBtn = $('.btn-repeat')
+	const dashboard = $('.dashboard')
 
 	const app = {
 		currenIndex: 0,
@@ -61,7 +64,7 @@
 				image: './assetss/image/4.jpg'
 			},
 			{
-				name: 'Stram đến bao giờ',
+				name: 'Stream đến bao giờ',
 				singer: 'ĐỘ MIXI',
 				path: 'https://audio.jukehost.co.uk/FOZUkSfMH1LyfTdcE1kmiHPM2hAtfwdJ',
 				image: './assetss/image/5.jpg'
@@ -218,42 +221,55 @@
 		},
 
 		// Thanh thời gian Audio
-		loadTimeAudio: setInterval(function() {
-			{ // Thủ công
-			const totalHour = Math.floor(audio.duration / 3600)
-			let totalMinute = Math.floor((audio.duration - totalHour*3600) / 60)
-			let totalSecond = Math.floor(audio.duration - totalHour*3600 - totalMinute * 60)
 			
-			const currentHour = Math.floor(audio.currentTime / 3600)
-			let currentMin = Math.floor((audio.currentTime - currentHour*3600) / 60)
-			let currentSec = Math.floor(audio.currentTime - currentHour*3600 - currentMin * 60)
-			
-			totalSecond = totalSecond < 10 ? ('0' + totalSecond) : totalSecond
-			currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
-			totalMinute = totalMinute < 10 ? ('0' + totalMinute) : totalMinute
-			currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
-			let totalTime = ``
-			if (totalHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec} / ${totalHour}:${totalMinute}:${totalSecond}`
-			
-			else totalTime = `${currentMin}:${currentSec} / ${totalMinute}:${totalSecond}`
-			totalAudio.textContent = totalTime
-			}
-			
-			// Định dạng HH:MM:SS
-			// if(audio.duration > 3600) {
-			// 	const totalTime = new Date(audio.duration * 1000).toISOString().substr(12, 7);
-			// 	const currentTime = new Date(audio.currentTime * 1000).toISOString().substr(12, 7);
-			// } else { // MM:SS
-			// 	const totalTime = new Date(audio.duration * 1000).toISOString().substr(14, 5);
-			// 	const currentTime = new Date(audio.currentTime * 1000).toISOString().substr(14, 5);
-			// }
-			// console.log(totalTime)
-			// totalAudio.textContent = `${currentTime} / ${totalTime}`	
-		}, 1000),
+		loadTimeAudio: 
+			function() {
+				setInterval(function() {
+					{ // Thủ công
+					const totalHour = Math.floor(audio.duration / 3600)
+					let totalMinute = Math.floor((audio.duration - totalHour*3600) / 60)
+					let totalSecond = Math.floor(audio.duration - totalHour*3600 - totalMinute * 60)
+					
+					const currentHour = Math.floor(audio.currentTime / 3600)
+					let currentMin = Math.floor((audio.currentTime - currentHour*3600) / 60)
+					let currentSec = Math.floor(audio.currentTime - currentHour*3600 - currentMin * 60)
+					
+					totalSecond = totalSecond < 10 ? ('0' + totalSecond) : totalSecond
+					currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
+					totalMinute = totalMinute < 10 ? ('0' + totalMinute) : totalMinute
+					currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
+					let totalTime = ``
+					if (totalHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec} / ${totalHour}:${totalMinute}:${totalSecond}`
+					
+					else totalTime = `${currentMin}:${currentSec} / ${totalMinute}:${totalSecond}`
+					if(!isNaN(totalSecond))
+					totalAudio.textContent = totalTime
+					else totalAudio.textContent = 'Loading...'
+					}
+					// Định dạng HH:MM:SS
+					// if(audio.duration > 3600) {
+					// 	const totalTime = new Date(audio.duration * 1000).toISOString().substr(12, 7);
+					// 	const currentTime = new Date(audio.currentTime * 1000).toISOString().substr(12, 7);
+					// } else { // MM:SS
+					// 	const totalTime = new Date(audio.duration * 1000).toISOString().substr(14, 5);
+					// 	const currentTime = new Date(audio.currentTime * 1000).toISOString().substr(14, 5);
+					// }
+					// console.log(totalTime)
+					// totalAudio.textContent = `${currentTime} / ${totalTime}`	
+				}, 1000)
+				
+			},
 		
 		handleEvents: function() {
 			const _this = this
 			const cdWidth = cd.offsetWidth
+
+			dashboard.onclick = function() {
+				function myFunction(event) {
+					var x = event.key;
+					console.log(x)
+				      }
+			}
 
 			// CD quay / stop
 			const cdThumbAnimate = cdThumb.animate([
@@ -275,6 +291,16 @@
 				cd.style.width = newCdWidth >=0 ? newCdWidth + 'px' : 0
 				cd.style.opacity = newCdWidth / cdWidth 
 			}
+			audio.onplay = function() {
+				_this.isPlaying = true
+				player.classList.add('playing')
+				cdThumbAnimate.play()
+			}
+			audio.onpause = function() {
+				_this.isPlaying = false
+				player.classList.remove('playing')
+				cdThumbAnimate.pause()
+			}
 			// Play / Pause 
 			playBtn.onclick = function() {
 				
@@ -283,17 +309,9 @@
 				} else {
 					audio.play()
 				}
+				audio.onplay()
+				audio.onpause()
 
-				audio.onplay = function() {
-					_this.isPlaying = true
-					player.classList.add('playing')
-					cdThumbAnimate.play()
-				}
-				audio.onpause = function() {
-					_this.isPlaying = false
-					player.classList.remove('playing')
-					cdThumbAnimate.pause()
-				}
 			}
 
 			// Tua bai hat
@@ -309,6 +327,34 @@
 				audio.currentTime = seekTime
 			}
 
+			let currentValue = progress.value
+			progress.onmousemove = function() {
+				// console.log([this])
+				if(progress.value !== currentValue) {
+					let timeAudioHover = (Math.floor(progress.value / 100 * audio.duration))
+					
+					const currentHour = Math.floor(timeAudioHover / 3600)
+					let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
+					let currentSec = Math.floor(timeAudioHover - currentHour*3600 - currentMin * 60)
+
+					currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
+					currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
+
+					if (currentHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec}`
+					
+					else totalTime = `${currentMin}:${currentSec}`
+
+					timeHover.textContent = totalTime
+					timeHover.style.display = 'block'
+				}
+				currentValue = progress.value
+			}
+			progress.onmouseleave = function() {
+				timeHover.style.display = 'none'
+			}
+
+
+
 			// NEXT song
 			nextBtn.onclick = () => {
 				if(_this.isRandom) {
@@ -316,10 +362,7 @@
 				} else {
 					_this.nextSong()
 				}
-				audio.onplay = function() {
-					_this.isPlaying = true
-					player.classList.add('playing')
-				}
+				audio.onplay()
 				audio.play()
 			}
 			//PREVIOUS SONG
@@ -329,10 +372,7 @@
 				} else {
 					_this.prevSong()
 				}
-				audio.onplay = function() {
-					_this.isPlaying = true
-					player.classList.add('playing')
-				}
+				audio.onplay()
 				audio.play()
 			}
 
@@ -347,6 +387,7 @@
 				repeatBtn.classList.toggle('active')
 			}
 			
+			//Repet Song when ended
 			audio.onended = function() {
 				if(_this.isRepeat) {
 					audio.play()
@@ -355,7 +396,22 @@
 				}
 			}
 
-			_this.playSongWhenClick()
+			//Play Song when click
+			const allSong = $$('.song')
+			allSong.forEach(function(song, index) {
+				song.onclick = function(event) {
+					if(event.target.classList.value === 'option' || event.target.classList.value === 'fas fa-ellipsis-h' 
+						|| index === _this.currenIndex)
+						return;
+					_this.changeActiveSong(false)
+					_this.currenIndex = index
+					_this.loadCurrentSong()
+					audio.onplay()
+					audio.play()
+				}
+			})
+			
+
 
 
 
@@ -364,12 +420,12 @@
 		loadCurrentSong: function() {
 			heading.textContent = this.currentSong.name
 			cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
-			audio.src = this.songs[this.currenIndex].path
+			audio.src = this.currentSong.path
 			this.changeActiveSong(true)
+			this.loadTimeAudio()
 
 
 		},
-
 
 		changeActiveSong: function(active) {
 			const isSongStr = `#song-${this.currenIndex}`
@@ -407,32 +463,7 @@
 			this.loadCurrentSong()
 		},
 
-		playSongWhenClick: function() {
-			const _this = this
-			const allSong = $$('.song')
-			// const allOptions = $$('.option')
-			allSong.forEach(function(song, index) {
-				// console.log(song.children[2])
-				song.onclick = function(event) {
-					console.log(event.target.classList.value)
-					if(event.target.classList.value === 'option' || event.target.classList.value === 'fas fa-ellipsis-h' 
-					    || index === _this.currenIndex)
-						return;
-					// allOptions.forEach((option, ind) => {
-					// 	option.onclick = function() {
-					// 		// console.log(option, ind)
-					// }})
-					_this.changeActiveSong(false)
-					_this.currenIndex = index
-					_this.loadCurrentSong()
-					audio.onplay = function() {
-						_this.isPlaying = true
-						player.classList.add('playing')
-					}
-					audio.play()
-				}
-			})
-		},
+		
 		
 		
 		start: function() {
