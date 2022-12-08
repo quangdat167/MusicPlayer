@@ -264,13 +264,6 @@
 			const _this = this
 			const cdWidth = cd.offsetWidth
 
-			dashboard.onclick = function() {
-				function myFunction(event) {
-					var x = event.key;
-					console.log(x)
-				      }
-			}
-
 			// CD quay / stop
 			const cdThumbAnimate = cdThumb.animate([
 				{
@@ -322,14 +315,26 @@
 				}
 				progress.value = value;
 			}
-			progress.onclick = function() {
+				
+				
+			
+
+			// Tua bai hat
+			progress.oninput = function() {
+				audio.pause()
 				let seekTime = progress.value / 100 * audio.duration
 				audio.currentTime = seekTime
 			}
 
+			// Khi thả chuột sẽ ẩn time-hover
+			progress.onmouseup = function(){
+				audio.play()
+				timeHover.style.display = 'none'
+			}
+
+			// Khi trỏ chuột hiển thị thời gian sẽ tua đến
 			let currentValue = progress.value
 			progress.onmousemove = function() {
-				// console.log([this])
 				if(progress.value !== currentValue) {
 					let timeAudioHover = (Math.floor(progress.value / 100 * audio.duration))
 					
@@ -349,11 +354,10 @@
 				}
 				currentValue = progress.value
 			}
+
 			progress.onmouseleave = function() {
 				timeHover.style.display = 'none'
 			}
-
-
 
 			// NEXT song
 			nextBtn.onclick = () => {
