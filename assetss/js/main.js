@@ -246,6 +246,9 @@
 					totalAudio.textContent = totalTime
 					else totalAudio.textContent = 'Loading...'
 					}
+				// Ẩn time-hover
+				timeHover.style.display = 'none'
+
 					// Định dạng HH:MM:SS
 					// if(audio.duration > 3600) {
 					// 	const totalTime = new Date(audio.duration * 1000).toISOString().substr(12, 7);
@@ -325,25 +328,25 @@
 				// Khi trỏ chuột hiển thị thời gian sẽ tua đến
 				let timeAudioHover = (Math.floor(seekTime))
 					
-					const currentHour = Math.floor(timeAudioHover / 3600)
-					let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
-					let currentSec = Math.floor(timeAudioHover - currentHour*3600 - currentMin * 60)
+				const currentHour = Math.floor(timeAudioHover / 3600)
+				let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
+				let currentSec = Math.floor(timeAudioHover - currentHour*3600 - currentMin * 60)
 
-					currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
-					currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
+				currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
+				currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
 
-					if (currentHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec}`
-					
-					else totalTime = `${currentMin}:${currentSec}`
+				if (currentHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec}`
+				else totalTime = `${currentMin}:${currentSec}`
 
-					timeHover.textContent = totalTime
-					timeHover.style.display = 'block'
+				timeHover.textContent = totalTime
+				timeHover.style.display = 'block'
 			}
+
 
 			// Khi thả chuột sẽ ẩn time-hover
-			progress.onmouseup = function(){
-				timeHover.style.display = 'none'
-			}
+			// progress.onmouseup = function(){
+			// 	timeHover.style.display = 'none'
+			// }
 
 			// let currentValue = progress.value
 			// progress.onmousemove = function() {
