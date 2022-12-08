@@ -157,6 +157,11 @@
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
       }
       
+      .song:hover {
+	/* cursor: pointer; */
+	opacity: 0.9;
+      }
+      
       .song.active {
 	background-color: var(--primary-color);
       }

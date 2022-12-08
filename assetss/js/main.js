@@ -13,6 +13,8 @@
 
 	const $ = document.querySelector.bind(document)
 	const $$ = document.querySelectorAll.bind(document)
+
+	const allSong = $$('.song')
 	
 	const totalAudio = $('.time-audio')
 	const cd = $('.cd')
@@ -296,7 +298,11 @@
 
 			// Tua bai hat
 			audio.ontimeupdate = function() {
-				progress.value = audio.currentTime / audio.duration *100
+				let value = 0;
+				if(!isNaN( audio.currentTime / audio.duration)) {
+					value = audio.currentTime / audio.duration *100
+				}
+				progress.value = value;
 			}
 			progress.onclick = function() {
 				let seekTime = progress.value / 100 * audio.duration
@@ -349,6 +355,8 @@
 				}
 			}
 
+			_this.playSongWhenClick()
+
 
 
 
@@ -399,7 +407,32 @@
 			this.loadCurrentSong()
 		},
 
-		
+		playSongWhenClick: function() {
+			const _this = this
+			const allSong = $$('.song')
+			// const allOptions = $$('.option')
+			allSong.forEach(function(song, index) {
+				// console.log(song.children[2])
+				song.onclick = function(event) {
+					console.log(event.target.classList.value)
+					if(event.target.classList.value === 'option' || event.target.classList.value === 'fas fa-ellipsis-h' 
+					    || index === _this.currenIndex)
+						return;
+					// allOptions.forEach((option, ind) => {
+					// 	option.onclick = function() {
+					// 		// console.log(option, ind)
+					// }})
+					_this.changeActiveSong(false)
+					_this.currenIndex = index
+					_this.loadCurrentSong()
+					audio.onplay = function() {
+						_this.isPlaying = true
+						player.classList.add('playing')
+					}
+					audio.play()
+				}
+			})
+		},
 		
 		
 		start: function() {
@@ -407,14 +440,14 @@
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
 			
+			// Render playlist
 			this.render()
+			
 			// Lắng nghe/ Xử lý các event
-
 			this.handleEvents()
 
-			// Tải bài hát đầu tiên vào UI
 			
-			// Render playlist
+			// Tải bài hát đầu tiên vào UI
 			this.loadCurrentSong()
 
 		},
