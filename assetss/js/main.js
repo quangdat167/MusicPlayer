@@ -226,11 +226,11 @@
 			function() {
 				setInterval(function() {
 					{ // Thủ công
-					const totalHour = Math.floor(audio.duration / 3600)
+					let totalHour = Math.floor(audio.duration / 3600)
 					let totalMinute = Math.floor((audio.duration - totalHour*3600) / 60)
 					let totalSecond = Math.floor(audio.duration - totalHour*3600 - totalMinute * 60)
 					
-					const currentHour = Math.floor(audio.currentTime / 3600)
+					let currentHour = Math.floor(audio.currentTime / 3600)
 					let currentMin = Math.floor((audio.currentTime - currentHour*3600) / 60)
 					let currentSec = Math.floor(audio.currentTime - currentHour*3600 - currentMin * 60)
 					
@@ -239,7 +239,13 @@
 					totalMinute = totalMinute < 10 ? ('0' + totalMinute) : totalMinute
 					currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
 					let totalTime = ``
-					if (totalHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec} / ${totalHour}:${totalMinute}:${totalSecond}`
+					if (totalHour != 0 ) {
+						if(currentHour != 0)
+						totalTime = `${currentHour}:${currentMin}:${currentSec} / ${totalHour}:${totalMinute}:${totalSecond}`
+						else {
+						totalTime = `${currentMin}:${currentSec} / ${totalHour}:${totalMinute}:${totalSecond}`
+						}
+					}
 					
 					else totalTime = `${currentMin}:${currentSec} / ${totalMinute}:${totalSecond}`
 					if(!isNaN(totalSecond))
@@ -262,7 +268,7 @@
 				// Ẩn time-hover (Do Điện thoại dùng onmouseup không nhạy nên phải dùng cách này)
 				setInterval(function() {
 					timeHover.style.display = 'none'
-				}, 2000)
+				}, 4000)
 				
 			},
 		
@@ -347,9 +353,9 @@
 
 
 			// Khi thả chuột sẽ ẩn time-hover
-			// progress.onmouseup = function(){
-			// 	timeHover.style.display = 'none'
-			// }
+			progress.onmouseup = function(){
+				timeHover.style.display = 'none'
+			}
 
 			// let currentValue = progress.value
 			// progress.onmousemove = function() {
