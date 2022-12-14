@@ -384,7 +384,7 @@
 				}
 				progress.value = value;
 				_this.setConfig('currentIndex', _this.currentIndex)
-				_this.setConfig('currentTime', Math.floor(audio.currentTime))
+				_this.setConfig('currentTime', audio.currentTime)
 			}
 				
 
@@ -505,6 +505,7 @@
 
 		loadConfig: function() {
 			this.currentIndex = this.config.currentIndex
+			if(!isNaN(audio.currentTime))
 			audio.currentTime = this.config.currentTime
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
