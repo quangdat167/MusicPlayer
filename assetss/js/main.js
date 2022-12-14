@@ -252,7 +252,7 @@
 		],
 
 		render: function() {
-			const htmls = this.songs.map((song, index) => {
+			const htmls = this.songs.map(function(song, index) {
 				// style="background: url(${song.backgroundImage}) center / cover no-repeat">
 				return `
 				<div class="song" id="song-${index}" data-index="${index}">
@@ -396,7 +396,7 @@
 			}			
 
 			// NEXT song
-			nextBtn.onclick = () => {
+			nextBtn.onclick = function() {
 				if(_this.isRandom) {
 					_this.playRandomSong()
 				} else {
@@ -407,7 +407,7 @@
 				_this.scrollIntoView()
 			}
 			//PREVIOUS SONG
-			prevBtn.onclick = () => {
+			prevBtn.onclick = function() {
 				if(_this.isRandom) {
 					_this.playRandomSong()
 				} else {
@@ -483,7 +483,7 @@
 		
 		//Scroll Into View
 		scrollIntoView : function() {
-			setTimeout(()=> {
+			setTimeout(function() {
 				$('.song.active').scrollIntoView({
 					behavior: 'smooth',
 					block: 'center',
