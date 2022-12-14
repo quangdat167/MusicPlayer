@@ -378,33 +378,21 @@
 
 			// Tua bai hat
 			audio.ontimeupdate = function() {
-				let value = 0;
+				let value = 0
 				if(!isNaN( audio.currentTime / audio.duration)) {
 					value = audio.currentTime / audio.duration *100
 				}
 				progress.value = value;
 				_this.setConfig('currentIndex', _this.currentIndex)
-				_this.setConfig('currentTime', audio.currentTime)
+				let timeConfig = Math.floor(audio.currentTime)
+				_this.setConfig('currentTime', timeConfig)
 			}
-				
+			
 
 			// Tua bai hat
 			progress.oninput = function() {
 				let seekTime = progress.value / 100 * audio.duration
 				audio.currentTime = seekTime
-
-				// Khi trỏ chuột hiển thị thời gian sẽ tua đến
-				let timeAudioHover = (Math.floor(seekTime))
-					
-				const currentHour = Math.floor(timeAudioHover / 3600)
-				let currentMin = Math.floor((timeAudioHover - currentHour*3600) / 60)
-				let currentSec = Math.floor(timeAudioHover - currentHour*3600 - currentMin * 60)
-
-				currentSec = currentSec < 10 ? ('0' + currentSec) : currentSec
-				currentMin = currentMin < 10 ? ('0' + currentMin) : currentMin
-
-				if (currentHour != 0 ) totalTime = `${currentHour}:${currentMin}:${currentSec}`
-				else totalTime = `${currentMin}:${currentSec}`
 			}			
 
 			// NEXT song
@@ -504,9 +492,12 @@
 		},
 
 		loadConfig: function() {
+			audio.load()
 			this.currentIndex = this.config.currentIndex
-			if(!isNaN(audio.currentTime))
-			audio.currentTime = this.config.currentTime
+			// if(!isNaN(audio.currentTime / audio.duration))
+			console.log(Math.floor(app.config.currentTime))
+			audio.currentTime = app.config.currentTime
+			// console.log(Math.)
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
 			this.scrollIntoView()
@@ -545,7 +536,7 @@
 		start: function() {
 			// Gán cấu hình từ config vào app
 			this.loadConfig()
-
+			
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
 			
