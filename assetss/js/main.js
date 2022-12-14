@@ -496,13 +496,8 @@
 		},
 
 		loadConfig: function() {
-			audio.load()
-			this.currentIndex = this.config.currentIndex
-			// if(!isNaN(audio.currentTime / audio.duration))
-			console.log(Math.floor(app.config.currentTime))
-			if(!isNaN(app.config.currentTime))
-			audio.currentTime = app.config.currentTime
-			// console.log(Math.)
+			if(!isNaN(this.config.currentIndex)) this.currentIndex = this.config.currentIndex
+			if(!isNaN(app.config.currentTime)) audio.currentTime = app.config.currentTime
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
 			this.scrollIntoView()
@@ -540,10 +535,10 @@
 		
 		start: function() {
 			// Gán cấu hình từ config vào app
-			this.loadConfig()
 			
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
+			this.loadConfig()
 			
 			// Render playlist
 			this.render()
