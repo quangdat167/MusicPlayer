@@ -400,8 +400,7 @@
 				}
 				progress.value = value;
 				_this.setConfig('currentIndex', _this.currentIndex)
-				let timeConfig = Math.floor(audio.currentTime)
-				_this.setConfig('currentTime', timeConfig)
+				_this.setConfig('currentTime', audio.currentTime)
 			}
 			
 
@@ -515,10 +514,14 @@
 		loadConfig: function() {
 			if(!isNaN(this.config.currentIndex)) {
 				this.currentIndex = this.config.currentIndex
-				this.scrollIntoView()
 			}	
-			if(!isNaN(app.config.currentTime)) {
-				audio.currentTime = app.config.currentTime
+			if(!isNaN(this.config.currentTime)) {
+				this.scrollIntoView()
+				audio.currentTime = this.config.currentTime
+				if(!isNaN( audio.currentTime / audio.duration)) {
+					progress.value = audio.currentTime / audio.duration *100
+				}
+				audio.play()
 			} 
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
@@ -558,17 +561,18 @@
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
 
-			// Gán cấu hình từ config vào app
-			this.loadConfig()
-			
 			// Render playlist
 			this.render()
+			
+			// Gán cấu hình từ config vào app
+			this.loadConfig()
+
+			// Tải bài hát đầu tiên vào UI
+			this.loadCurrentSong()
 			
 			// Lắng nghe/ Xử lý các event
 			this.handleEvents()
 			
-			// Tải bài hát đầu tiên vào UI
-			this.loadCurrentSong()
 			
 			// Khôi phục trạng thái của nút Random, Repeat
 			randomBtn.classList.toggle('active', this.isRandom)
