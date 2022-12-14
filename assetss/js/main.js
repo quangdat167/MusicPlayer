@@ -473,7 +473,8 @@
 
 		// Active song 
 		changeActiveSong: function(active) {
-			const idSong = $(`#song-${this.currentIndex}`)
+			const idSongString = `#song-${this.currentIndex}`
+			const idSong = $(idSongString)
 			if(active)
 			idSong.classList.add('active')
 			else
@@ -484,7 +485,8 @@
 		//Scroll Into View
 		scrollIntoView : function() {
 			setTimeout(function() {
-				$('.song.active').scrollIntoView({
+				const songActive = $('.song.active')
+				songActive.scrollIntoView({
 					behavior: 'smooth',
 					block: 'center',
 				})
