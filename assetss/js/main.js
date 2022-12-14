@@ -235,7 +235,7 @@
 			{
 				name: 'Viet Deep #20',
 				singer: 'MEDIA_MusicPro',
-				path: 'https://audio.jukehost.co.uk/pZKDz3ojTleZ5P0oVbolQ6qZ9cTApVcZ',
+				path: 'https://audio.jukehost.co.uk/b851eO6JbcqB3iL32XlkMd0eOwqdB6HS',
 				image: './assetss/image/11.png',
 				backgroundImage: './assetss/image/11.png'
 
@@ -246,6 +246,22 @@
 				path: 'https://audio.jukehost.co.uk/vDzz9Y1mpRLBolq2twF3daWDfl782w90',
 				image: './assetss/image/25.png',
 				backgroundImage: './assetss/image/25.png'
+
+			},
+			{
+				name: 'NONSTOP 2022 BAY PHÒNG BASS CỰC MẠNH | Nonstop Vinahouse 2022',
+				singer: 'MEDIA_MusicPro',
+				path: 'https://audio.jukehost.co.uk/zD2zAAX9odnUp54lys7dORn1gDnUv4FH',
+				image: './assetss/image/26.png',
+				backgroundImage: './assetss/image/26.png'
+
+			},
+			{
+				name: 'Mixset HouseLak - Boc Dau 1.0 | Hdung x Dat Kon',
+				singer: 'MEDIA_MusicPro',
+				path: 'https://audio.jukehost.co.uk/rJxJ2SDBm3SFlNIblap1ckOaexZovoSi',
+				image: './assetss/image/27.png',
+				backgroundImage: './assetss/image/27.png'
 
 			},
 			
@@ -495,12 +511,17 @@
 			}, 200)
 		},
 
+		// Load cấu hình đã lưu
 		loadConfig: function() {
-			if(!isNaN(this.config.currentIndex)) this.currentIndex = this.config.currentIndex
-			if(!isNaN(app.config.currentTime)) audio.currentTime = app.config.currentTime
+			if(!isNaN(this.config.currentIndex)) {
+				this.currentIndex = this.config.currentIndex
+				this.scrollIntoView()
+			}	
+			if(!isNaN(app.config.currentTime)) {
+				audio.currentTime = app.config.currentTime
+			} 
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
-			this.scrollIntoView()
 		},
 
 		
@@ -534,10 +555,10 @@
 		
 		
 		start: function() {
-			// Gán cấu hình từ config vào app
-			
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
+
+			// Gán cấu hình từ config vào app
 			this.loadConfig()
 			
 			// Render playlist
