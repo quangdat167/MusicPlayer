@@ -516,12 +516,11 @@
 				this.currentIndex = this.config.currentIndex
 			}	
 			if(!isNaN(this.config.currentTime)) {
-				this.scrollIntoView()
 				audio.currentTime = this.config.currentTime
+				this.scrollIntoView()
 				if(!isNaN( audio.currentTime / audio.duration)) {
 					progress.value = audio.currentTime / audio.duration *100
 				}
-				audio.play()
 			} 
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
