@@ -518,9 +518,6 @@
 			if(!isNaN(this.config.currentTime)) {
 				audio.currentTime = this.config.currentTime
 				this.scrollIntoView()
-				if(!isNaN( audio.currentTime / audio.duration)) {
-					progress.value = audio.currentTime / audio.duration *100
-				}
 			} 
 			this.isRandom = this.config.isRandom
 			this.isRepeat = this.config.isRepeat
@@ -552,19 +549,17 @@
 			this.currentIndex = newCurrentIndex
 			this.loadCurrentSong()
 		},
-
-		
-		
 		
 		start: function() {
+			// Gán cấu hình từ config vào app
+			this.loadConfig()
+			
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
+			
 
 			// Render playlist
 			this.render()
-			
-			// Gán cấu hình từ config vào app
-			this.loadConfig()
 
 			// Tải bài hát đầu tiên vào UI
 			this.loadCurrentSong()
