@@ -384,7 +384,7 @@
 				}
 				progress.value = value;
 				_this.setConfig('currentIndex', _this.currentIndex)
-				_this.setConfig('currentTime', audio.currentTime)
+				_this.setConfig('currentTime', Math.floor(audio.currentTime))
 			}
 				
 
