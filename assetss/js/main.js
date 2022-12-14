@@ -496,6 +496,7 @@
 			this.currentIndex = this.config.currentIndex
 			// if(!isNaN(audio.currentTime / audio.duration))
 			console.log(Math.floor(app.config.currentTime))
+			if(!isNaN(app.config.currentTime))
 			audio.currentTime = app.config.currentTime
 			// console.log(Math.)
 			this.isRandom = this.config.isRandom
