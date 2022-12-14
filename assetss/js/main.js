@@ -21,7 +21,7 @@
 	
 	const totalAudio = $('.time-audio')
 	const cd = $('.cd')
-	const heading = $('header h2')
+	const heading = $('marquee h2')
 	const cdThumb = $('.cd .cd-thumb')
 	const audio = $('#audio')
 	const video = $('#video')
@@ -486,10 +486,12 @@
 		scrollIntoView : function() {
 			setTimeout(function() {
 				const songActive = $('.song.active')
-				songActive.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center',
-				})
+				if(songActive) {
+					songActive.scrollIntoView({
+						behavior: 'smooth',
+						block: 'center',
+					})
+				}
 			}, 200)
 		},
 
