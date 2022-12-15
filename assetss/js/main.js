@@ -17,6 +17,7 @@
 
 	const PLAYER_STORAGE_KEY = 'Dat'
 
+	const html = $('html')
 	const allSong = $$('.song')
 	
 	const totalAudio = $('.time-audio')
@@ -474,6 +475,31 @@
 					
 				}
 			}
+
+			// Lắng nghe click phím
+			let isMuted = false
+			html.addEventListener("keydown", function(e) {
+				if(e.key === ' ') {
+					e.preventDefault()
+					playBtn.onclick()
+				}
+				if(e.key === 'ArrowRight') {
+					audio.currentTime += 15
+				}
+				if(e.key === 'ArrowLeft') {
+					audio.currentTime -= 15
+				}
+				if(e.key === 'm') {
+					isMuted = !isMuted
+					audio.muted = isMuted
+				}
+				if(e.key === 'l') {
+					nextBtn.onclick()
+				}
+				if(e.key === 'k') {
+					prevBtn.onclick()
+				}
+ 			})
 
 		},
 
