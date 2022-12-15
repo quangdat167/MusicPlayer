@@ -394,14 +394,11 @@
 			// Tua bai hat
 			audio.onloadedmetadata = function() {
 				audio.ontimeupdate = function() {
-					let value = 0 
-					
+					let value = 0
 					if(!isNaN( audio.currentTime / audio.duration) ) {
 						value = audio.currentTime / audio.duration *100
-						console.log(2)
 					}
 					progress.value = value;
-					console.log(audio.duration)
 					_this.setConfig('currentIndex', _this.currentIndex)
 					_this.setConfig('currentTime', audio.currentTime)
 				}
@@ -522,11 +519,6 @@
 			}	
 			if(!isNaN(this.config.currentTime)) {
 				audio.currentTime = this.config.currentTime
-				console.log('loadconfig CurrentTime')
-				audio.onloadedmetadata = function() {
-
-					console.log(audio.duration)
-				}
 			} 
 			if(this.config.isRandom)
 			this.isRandom = this.config.isRandom
