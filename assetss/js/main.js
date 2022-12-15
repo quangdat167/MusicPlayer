@@ -371,7 +371,6 @@
 				_this.isPlaying = true
 				player.classList.add('playing')
 				cdThumbAnimate.play()
-
 			}
 			audio.onpause = function() {
 				_this.isPlaying = false
@@ -393,16 +392,21 @@
 			}
 
 			// Tua bai hat
-			audio.ontimeupdate = function() {
-				let value = 0
-				if(!isNaN( audio.currentTime / audio.duration)) {
-					value = audio.currentTime / audio.duration *100
+			audio.onloadedmetadata = function() {
+				audio.ontimeupdate = function() {
+					let value = 0 
+					
+					if(!isNaN( audio.currentTime / audio.duration) ) {
+						value = audio.currentTime / audio.duration *100
+						console.log(2)
+					}
+					progress.value = value;
+					console.log(audio.duration)
+					_this.setConfig('currentIndex', _this.currentIndex)
+					_this.setConfig('currentTime', audio.currentTime)
 				}
-				progress.value = value;
-				_this.setConfig('currentIndex', _this.currentIndex)
-				_this.setConfig('currentTime', audio.currentTime)
+
 			}
-			
 
 			// Tua bai hat
 			progress.oninput = function() {
@@ -436,14 +440,14 @@
 			// Xử lý Bật/Tắt RANDOM song
 			randomBtn.onclick = function() {
 				_this.isRandom = !_this.isRandom
-				randomBtn.classList.toggle('active')
+				randomBtn.classList.toggle('active', _this.isRandom)
 				_this.setConfig('isRandom', _this.isRandom)
 			}
 
 			// Xử lý Bật/Tắt REPEAT song
 			repeatBtn.onclick = function() {
 				_this.isRepeat = !_this.isRepeat
-				repeatBtn.classList.toggle('active')
+				repeatBtn.classList.toggle('active', _this.isRepeat)
 				_this.setConfig('isRepeat', _this.isRepeat)
 			}
 			
@@ -482,6 +486,7 @@
 			audio.src = this.currentSong.path
 			this.changeActiveSong(true)
 			this.loadTimeAudio()
+			this.scrollIntoView()
 
 
 		},
@@ -517,9 +522,15 @@
 			}	
 			if(!isNaN(this.config.currentTime)) {
 				audio.currentTime = this.config.currentTime
-				this.scrollIntoView()
+				console.log('loadconfig CurrentTime')
+				audio.onloadedmetadata = function() {
+
+					console.log(audio.duration)
+				}
 			} 
+			if(this.config.isRandom)
 			this.isRandom = this.config.isRandom
+			if(this.config.isRepeat)
 			this.isRepeat = this.config.isRepeat
 		},
 
@@ -553,7 +564,7 @@
 		start: function() {
 			// Gán cấu hình từ config vào app
 			this.loadConfig()
-			
+
 			//Định nghĩa các thuộc tính cho Object
 			this.defineProperties()
 			
