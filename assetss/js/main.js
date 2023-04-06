@@ -265,6 +265,14 @@
 				backgroundImage: './assetss/image/27.png'
 
 			},
+			{
+				name: 'NONSTOP 2023 VINAHOUSE BASS CỰC MẠNH | NHẠC TRẺ REMIX HAY NHẤT HIỆN NAY',
+				singer: 'N2L Muzic Remix',
+				path: 'https://audio.jukehost.co.uk/Qpu4uRscoP1shSgcIpMSt7JM2a1vnLHh',
+				image: './assetss/image/20.png',
+				backgroundImage: './assetss/image/20.png'
+
+			},
 			
 		],
 
